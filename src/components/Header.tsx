@@ -40,13 +40,14 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   titleContainer: {
-    marginLeft: 20,
+    marginHorizontal: 10,
     flex: 1,
   },
   title: {
     ...FontFamilies.Lato_black,
     fontSize: 20,
     color: colors.basic_1,
+    transform: [{ translateY: -5 }],
   },
   archivedContainer: {
     alignItems: 'center',

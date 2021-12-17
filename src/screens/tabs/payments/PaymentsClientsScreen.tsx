@@ -7,7 +7,7 @@ import { Row } from '../../../components/Row';
 import { FontFamilies } from '../../../styles/typography';
 import { colors } from '../../../styles/colors';
 import { Customer } from './PaymentsClientsTypes';
-import { formatWholeDollars } from '../../../helpers/formatters';
+import { formatDollars } from '../../../helpers/formatters';
 import { Header } from '../../../components/Header';
 import { FloatButton } from '../../../components/FloatButton';
 import { Loader } from '../../../components/Loader';
@@ -119,7 +119,7 @@ const Item: React.FC<ItemProps> = ({ data, onPress }) => (
         </View>
       </Row>
       <View style={styles.paidContainer}>
-        <Text style={styles.revenues}>{formatWholeDollars(data.revenues ?? 0)}</Text>
+        <Text style={styles.revenues}>{formatDollars(data.revenues ?? 0)}</Text>
         <Text style={styles.revenuesDescription}>Total Paid</Text>
       </View>
     </Row>

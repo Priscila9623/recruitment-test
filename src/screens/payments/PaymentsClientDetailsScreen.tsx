@@ -6,7 +6,7 @@ import { Row } from '../../components/Row';
 import { colors } from '../../styles/colors';
 import { FontFamilies } from '../../styles/typography';
 import { Header } from '../../components/Header';
-import { formatDate, formatWholeDollars } from '../../helpers/formatters';
+import { formatDate, formatDollars, formatWholeDollars } from '../../helpers/formatters';
 import { HorizontalDivider } from '../../components/HorizontalDivider';
 import { DetailsTabType, Payment } from './PaymentsClientDetailsTypes';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -60,7 +60,7 @@ const PaymentsClientDetailsScreen: React.FC<PaymentsClientDetailsScreenProps> = 
           </>
         </Header>
         <View style={styles.earnedContainer}>
-          <Text style={styles.earned}>{formatWholeDollars(1400)}</Text>
+          <Revenues value={customer.revenues} />
           <Text style={styles.earnedDescription}>Total Earned</Text>
         </View>
       </View>
@@ -71,7 +71,7 @@ const PaymentsClientDetailsScreen: React.FC<PaymentsClientDetailsScreenProps> = 
       {activeTab === 'Payments' && (
         <View style={styles.view}>
           {isLoading ? (
-            <Loader />
+            <Loader style={styles.loader} />
           ) : (
             <SectionList
               sections={payments}
@@ -120,12 +120,28 @@ const Item: React.FC<ItemProps> = ({ data }) => (
     <Row style={styles.itemContainer}>
       <Text style={styles.description}>{data.description}</Text>
       <View style={styles.paidContainer}>
-        <Text style={styles.amount}>{`$${data.amount}`}</Text>
+        <Text style={styles.amount}>{formatWholeDollars(data.amount ?? 0)}</Text>
         <Text style={styles.date}>{formatDate(data.created)}</Text>
       </View>
     </Row>
   </View>
 );
+
+interface RevenuesProps {
+  value: number;
+}
+
+const Revenues: React.FC<RevenuesProps> = ({ value }) => {
+  const format = formatDollars(value ?? 0);
+  const total = format.split('.');
+
+  return (
+    <Text style={styles.earnedDollars}>
+      {`${total[0]}.`}
+      <Text style={styles.earnedCents}>{`${total[1]}`}</Text>
+    </Text>
+  );
+};
 
 const styles = StyleSheet.create({
   screen: {
@@ -164,9 +180,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  earned: {
-    ...FontFamilies.Lato_bold,
-    fontSize: 28,
+  amount: {
+    ...FontFamilies.Lato_regular,
+    fontSize: 20,
     color: colors.basic_1,
   },
   earnedDescription: {
@@ -218,7 +234,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: colors.basic_1,
   },
-  amount: {
+  earnedDollars: {
+    ...FontFamilies.Lato_bold,
+    fontSize: 30,
+    color: colors.basic_1,
+  },
+  earnedCents: {
     ...FontFamilies.Lato_regular,
     fontSize: 20,
     color: colors.basic_1,
@@ -234,6 +255,9 @@ const styles = StyleSheet.create({
   },
   floatButton: {
     bottom: 80,
+  },
+  loader: {
+    marginTop: 20,
   },
 });
 

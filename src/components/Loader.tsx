@@ -1,9 +1,18 @@
 import React from 'react';
-import { ActivityIndicator, Platform } from 'react-native';
+import { ActivityIndicator, Platform, StyleProp, ViewStyle } from 'react-native';
 import { colors } from '../styles/colors';
 
-interface LoaderProps {}
+interface LoaderProps {
+  style?: StyleProp<ViewStyle>;
+}
 
-export const Loader: React.FC<LoaderProps> = () => {
-  return <ActivityIndicator animating={true} size={Platform.OS === 'ios' ? 'large' : 50} color={colors.primary} />;
+export const Loader: React.FC<LoaderProps> = props => {
+  return (
+    <ActivityIndicator
+      animating={true}
+      size={Platform.OS === 'ios' ? 'large' : 50}
+      color={colors.primary}
+      style={props.style}
+    />
+  );
 };
