@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleProp, StyleSheet, TextStyle, TouchableOpacity, View } from 'react-native';
+import { Svgs } from '../helpers/svgs';
 import { colors } from '../styles/colors';
 import { FontFamilies } from '../styles/typography';
 import { Row } from './Row';
@@ -20,14 +21,14 @@ export const Header: React.FC<HeaderProps> = props => {
       <TouchableOpacity
         onPress={props.onPress}
         hitSlop={{ top: hitSlop, bottom: hitSlop, left: hitSlop, right: hitSlop }}>
-        <Text style={{ color: colors.basic_1 }}>X</Text>
+        <Svgs.times />
       </TouchableOpacity>
       <View style={styles.titleContainer}>
         <Text style={[styles.title, props.titleStyle]}>{props.title}</Text>
         {props.children}
       </View>
       <View style={styles.archivedContainer}>
-        <View style={{ borderWidth: 1, width: 24, height: 24 }} />
+        <Svgs.archive />
         <Text style={styles.archived}>{props.isArchived ? 'Archived' : 'Archive'}</Text>
       </View>
     </Row>

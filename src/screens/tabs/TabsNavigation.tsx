@@ -8,6 +8,7 @@ import { PaymentsClientsScreen } from './payments/PaymentsClientsScreen';
 import { HomeScreen } from './home/HomeScreen';
 import { TransactionsScreen } from './transactions/TransactionsScreen';
 import { AnalyticsScreen } from './analytics/AnalyticsScreen';
+import { Svgs } from '../../helpers/svgs';
 
 const Tab = createBottomTabNavigator<TabStackParamList>();
 
@@ -22,12 +23,14 @@ const TabsNavigation: React.FC = () => {
         tabBarAllowFontScaling: false,
         tabBarLabelStyle: styles.tabLabel,
         tabBarHideOnKeyboard: true,
+        tabBarStyle: { borderTopWidth: 0, elevation: 0 },
       }}>
       <Tab.Screen
         name="Home"
         component={HomeScreen}
         options={{
           tabBarLabel: 'HOME',
+          tabBarIcon: ({ color }) => <Svgs.home color={color} />,
         }}
       />
       <Tab.Screen
@@ -35,6 +38,7 @@ const TabsNavigation: React.FC = () => {
         component={TransactionsScreen}
         options={{
           tabBarLabel: 'TRANSACTIONS',
+          tabBarIcon: ({ color }) => <Svgs.transactions color={color} />,
         }}
       />
       <Tab.Screen
@@ -42,6 +46,7 @@ const TabsNavigation: React.FC = () => {
         component={AnalyticsScreen}
         options={{
           tabBarLabel: 'ANALYTICS',
+          tabBarIcon: ({ color }) => <Svgs.analytics color={color} />,
         }}
       />
       <Tab.Screen
@@ -49,6 +54,7 @@ const TabsNavigation: React.FC = () => {
         component={PaymentsClientsScreen}
         options={{
           tabBarLabel: 'PAYMENTS',
+          tabBarIcon: ({ color }) => <Svgs.payments color={color} />,
         }}
       />
     </Tab.Navigator>

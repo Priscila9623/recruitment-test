@@ -12,6 +12,7 @@ import { Header } from '../../../components/Header';
 import { FloatButton } from '../../../components/FloatButton';
 import { Loader } from '../../../components/Loader';
 import { TabsNavigationProp } from '../TabsNavigationTypes';
+import { Svgs } from '../../../helpers/svgs';
 
 export interface PaymentsClientsScreenProps {
   navigation: TabsNavigationProp<'Payments'>;
@@ -32,7 +33,7 @@ const PaymentsClientsScreen: React.FC<PaymentsClientsScreenProps> = ({ navigatio
   }, [customers, selectedItems]);
 
   const { setSourceData, setSearchValue, filtered } = useSearch<Customer>({
-    allowFields: ['name', 'email', 'phone', 'revenues'],
+    allowFields: ['name'],
   });
 
   useEffect(() => {
@@ -67,7 +68,7 @@ const PaymentsClientsScreen: React.FC<PaymentsClientsScreenProps> = ({ navigatio
         <View style={styles.content}>
           <Row style={styles.inputContainer}>
             <View style={styles.inputLeftBox}>
-              <View style={{ borderWidth: 1, width: 19, height: 19 }} />
+              <Svgs.search />
             </View>
             <TextInput
               style={styles.inputBox}
@@ -93,7 +94,7 @@ const PaymentsClientsScreen: React.FC<PaymentsClientsScreenProps> = ({ navigatio
           )}
         </View>
         <FloatButton onPress={() => console.log('BTN ADD CLIENT')}>
-          <Text style={{ color: colors.basic_2 }}>+</Text>
+          <Svgs.add_customer />
         </FloatButton>
       </View>
     </SafeAreaView>

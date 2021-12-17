@@ -15,6 +15,7 @@ import { Loader } from '../../components/Loader';
 import { RootStackParamList } from '../../RootNavigation';
 import { Customer } from '../tabs/payments/PaymentsClientsTypes';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { Svgs } from '../../helpers/svgs';
 
 export interface PaymentsClientDetailsScreenParams {
   customer: Customer;
@@ -88,7 +89,7 @@ const PaymentsClientDetailsScreen: React.FC<PaymentsClientDetailsScreenProps> = 
         </View>
       )}
       <FloatButton onPress={() => console.log('BTN ADD PAYMENT')} style={styles.floatButton}>
-        <Text style={{ color: colors.basic_2 }}>+</Text>
+        <Svgs.plus />
       </FloatButton>
     </View>
   );
